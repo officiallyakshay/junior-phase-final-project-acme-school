@@ -1,0 +1,128 @@
+<html>
+<head>
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/5.0.1/react-router-dom.js"></script>  
+  <link rel = 'stylesheet' href = 'styles.css'>
+</head>
+<body>
+<html>
+  <body>
+    <div id='root'></div>
+    <script type='text/babel'>
+      const { render } = ReactDOM;
+      const { createElement, Component } = React;
+      const { HashRouter, Link, Route, Switch, Redirect, NavLink } = ReactRouterDOM;
+      
+
+
+      class App extends Component {
+        constructor() {
+          super();
+          this.state = {
+
+          }
+        }
+        async componentDidMount() {
+        const urls = [
+          '/students',
+          '/schools',
+          '/schools/:id', //most popular? dont think this is right
+          '/schools/:id' //top school?
+        ];
+        const [] = await Promise.all(
+          urls.map( url => axios.get(url).then( response => response.data))
+        );
+        this.setState({ });
+        }
+        render() {
+          return (
+            < hr />
+          );
+        }
+      }
+
+
+
+    const root = document.querySelector('#root');
+    render(< App />, root)
+    </script>
+    <header>
+      <a href='#'>Acme Schools</a>
+      <nav>
+        <a href='#' class='selected'>Schools</a>
+        <a href='#'>Students</a>
+        <a href='#'>Most Popular</a>
+        <a href='#'>Top School</a>
+      </nav>
+    </header>
+    <div id='content'>
+      <h1>Users</h1>
+      <form>
+        <h1>Create A User</h1>
+        <div>
+          <label>First Name</label>
+          <input placeholder='Jane' />
+        </div>
+        <div>
+          <label>Last Name</label>
+          <input placeholder='Doe' />
+        </div>
+        <div>
+          <label>Department</label>
+          <select>
+            <option value=''>-- None --</option>
+            <option value=''>Administration</option>
+            <option value=''>Human Resources</option>
+            <option value=''>Engineering</option>
+          </select>
+        </div>
+        <div class='button-row'>
+          <button>Clear</button>
+          <button class='primary'>Save</button>
+        </div>
+      </form>
+      <div class='tiles'>
+        <div>
+          <h4>User A</h4>
+          <div>Some text for the user</div>
+        </div>
+        <div>
+          <h4>User A</h4>
+          <div>
+            Some text for the user.
+            Some text for the user.
+            Some text for the user.
+            Some text for the user.
+            Some text for the user.
+            Some text for the user.
+          </div>
+        </div>
+        <div>
+          <h4>User A</h4>
+          <div>Some text for the user</div>
+        </div>
+        <div>
+          <h4>User A</h4>
+          <div>Some text for the user</div>
+        </div>
+        <div>
+          <h4>User A</h4>
+          <div>Some text for the user</div>
+        </div>
+        <div>
+          <h4>User A</h4>
+          <div>Some text for the user</div>
+        </div>
+        <div>
+          <h4>User A</h4>
+          <div>Some text for the user</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,118 @@
+* {
+    box-sizing: border-box;
+  }
+  h1, h2, h3, h4 {
+    margin-top: 0;
+  }
+  input, select, button {
+    height: 1.75rem;
+    font-size: 1rem;
+  }
+  body {
+    font-family: verdana;
+    margin: 0;
+    color: #666;
+  }
+  header {
+    display: flex;
+    padding: 1rem;
+    background-color: dodgerBlue;
+  }
+  header a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  header a.selected {
+    font-weight: bold;
+  }
+  header > a {
+    flex: 1;
+    font-size: 2rem;
+  }
+  nav {
+    flex: 3;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  #content {
+    margin: 1rem;
+  }
+  .tiles {
+    display: flex;
+    flex-wrap: wrap;
+  
+  }
+  .tiles > div {
+    border: solid 1px black;
+    border-radius: 1rem;
+    width: calc((100% / 3) - 2rem);
+    margin: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  form {
+    padding: 1rem;
+    width: 50%;
+    border: solid 1px black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
+  
+  form  > div {
+    display: flex;
+    margin-bottom: 1rem;
+  }
+  
+  form > div > label {
+    flex: 1;
+    display: flex;
+    font-weight: bold;
+  }
+  
+  form > div > input,select {
+    flex: 3;
+  }
+  
+  .button-row {
+    display: flex;
+    justify-content: center;
+  }
+  button.primary{
+    background-color: dodgerBlue;
+    color: white;
+    border-color: black;
+  }
+  
+  @media (max-width: 600px){
+  
+    header {
+      flex-direction: column;
+    }
+    header nav {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    header nav a {
+      margin-top: 1rem;
+    }
+    .tiles > div {
+      width: calc(100% - 2rem);
+    }
+    form {
+      width: 100%;
+    }
+    form > div {
+      flex-direction: column;
+    }
+    form > div > label {
+      margin-bottom: 1.5rem;
+    }
+  }
+  

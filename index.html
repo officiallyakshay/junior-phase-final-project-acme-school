@@ -7,51 +7,165 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/5.0.1/react-router-dom.js"></script>  
-  <link rel = 'stylesheet' href = 'styles.css'>
+  <!-- <link rel = 'stylesheet' href = 'styles.css'> -->
+<style>
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  nav {
+    display: flex;
+    padding: 1rem;
+    background-color: dodgerblue;
+    text-decoration: none;
+    color: white;
+  }
+</style>
 </head>
 <body>
-<html>
-  <body>
-    <div id='root'></div>
-    <script type='text/babel'>
-      const { render } = ReactDOM;
-      const { createElement, Component } = React;
-      const { HashRouter, Link, Route, Switch, Redirect, NavLink } = ReactRouterDOM;
-      
+  <div id='root'></div>
+  <script type='text/babel'>
+    const { render } = ReactDOM;
+    const { createElement, Component } = React;
+    const { HashRouter, Link, Route, Switch, Redirect, NavLink } = ReactRouterDOM;
+    
+    const Nav = ({ schools, students }) => {
+      const links = [
+        { text: `Schools (${schools.length})`, to: '/schools' },
+        { text: `Students (${students.length})`, to: '/students' },
+        { text: `Most Popular ()`, to: '/' },
+        { text: `Top School ()`, to: '/' },
+      ];
+      return (
+        <nav>
+          <a href='/'>Acme School</a>
+            <div>
+              {
+                links.map( link=> <NavLink key={ link.text } to={ link.to }>{ link.text }</NavLink>)
+              }
+            </div>
+        </nav>
+      );
+    }
 
+    const Home = () => {
+      return (
+        <div>
+          <form className='form'>
+            First Name <input />
+            Last Name <input />
+            Email <input />
+            GPA <input />
+            Enroll At <select>
+              <option value="--Not Enrolled--">--Not Enrolled--</option>
+              <option value="MIT">MIT</option>
+              <option value="Harvard">Harvard</option>
+              <option value="Cal Poly">Cal Poly</option>
+              <option value="UC Berkeley">UC Berkeley</option>
+            </select>
+            <button>Save</button>
+          </form>
+          <h1>Home</h1>
+          <p>Our most popular school is <a></a> with students.</p>
+          <p>Our top performing school is <a></a> with an average GPA of</p>
+        </div>
+      );
+    }
 
-      class App extends Component {
-        constructor() {
-          super();
-          this.state = {
+    const Schools = ({ schools }) => {
+      return (
+        <div>
+          <form className='form'>
+            First Name <input />
+            Last Name <input />
+            Email <input />
+            GPA <input />
+            Enroll At <select>
+              <option value="--Not Enrolled--">--Not Enrolled--</option>
+              <option value="MIT">MIT</option>
+              <option value="Harvard">Harvard</option>
+              <option value="Cal Poly">Cal Poly</option>
+              <option value="UC Berkeley">UC Berkeley</option>
+            </select>
+            <button>Save</button>
+          </form>
+          <ul>
+            {
+              schools.map(school => <li key={school.id}>{school.name}</li>)
+            }
+          </ul>
+        </div>
+      );
+    }
 
-          }
-        }
-        async componentDidMount() {
-        const urls = [
-          '/students',
-          '/schools',
-          '/schools/:id', //most popular? dont think this is right
-          '/schools/:id' //top school?
-        ];
-        const [] = await Promise.all(
-          urls.map( url => axios.get(url).then( response => response.data))
-        );
-        this.setState({ });
-        }
-        render() {
-          return (
-            < hr />
-          );
+    const Students = ({ students }) => {
+      return (
+        <div>
+          <form className='form'>
+            First Name <input />
+            Last Name <input />
+            Email <input />
+            GPA <input />
+            Enroll At <select>
+              <option value="--Not Enrolled--">--Not Enrolled--</option>
+              <option value="MIT">MIT</option>
+              <option value="Harvard">Harvard</option>
+              <option value="Cal Poly">Cal Poly</option>
+              <option value="UC Berkeley">UC Berkeley</option>
+            </select>
+            <button>Save</button>
+          </form>
+          <ul>
+            {
+              students.map(student => <li key={student.id}>{student.name}</li>)
+            }
+          </ul>
+        </div>
+      );
+    }
+
+    class App extends Component {
+      constructor() {
+        super();
+        this.state = {
+          schools: [],
+          students: []
         }
       }
+      async componentDidMount() {
+        const urls = [
+          '/schools',
+          '/students'
+        ];
+        const [ schools, students ] = await Promise.all(
+          urls.map( url => axios.get(url).then( response => response.data))
+        );
+        this.setState({ schools, students });
+      }
+      render() {
+        return (
+          <HashRouter>
+            <Route render = { () => <Nav { ...this.state } /> } />
+              <div className='container'>
+                <Route exact path='/' render = { () => <Home { ...this.state } /> } />
+                <Route path='/schools' render={ () => <Schools { ...this.state } /> } />
+                <Route path='/students' render={()=> <Students { ...this.state } /> } />
+                  {
+                // <Route path='/schools:id' render={()=> <Schools />} />
+                }
+              </div>
+          </HashRouter>
+        );
+      }
+    }
 
 
 
     const root = document.querySelector('#root');
     render(< App />, root)
     </script>
-    <header>
+    <!-- <header>
       <a href='#'>Acme Schools</a>
       <nav>
         <a href='#' class='selected'>Schools</a>
@@ -123,6 +237,6 @@
           <div>Some text for the user</div>
         </div>
       </div>
-    </div>
+    </div> -->
   </body>
 </html>

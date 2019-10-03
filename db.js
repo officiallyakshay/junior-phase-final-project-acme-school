@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { STRING, UUID, UUIDV4 } = Sequelize;
+const { STRING, UUID, UUIDV4, INTEGER } = Sequelize;
 
 const conn = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/junior_phase_final_project_acme_school');
 
@@ -18,7 +18,9 @@ const Students = conn.define('students', {
     primaryKey: true,
     defaultValue: UUIDV4,
   },
-  name: STRING
+  firstName: STRING,
+  lastName: STRING,
+  gpa: INTEGER
 });
 
 Students.belongsTo(Schools);

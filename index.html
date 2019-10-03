@@ -102,14 +102,14 @@
       );
     }
 
-    const Students = ({ students, schools, onChange, onSubmit }) => {
+    const Students = ({ students, schools, onChange, onSubmit, destroy }) => {
       return (
         <div>
           <form className='form'>
-            First Name <input onChange = { onChange } />
-            Last Name <input onChange = { onChange } />
-            Email <input onChange = { onChange } />
-            GPA <input onChange = { onChange } />
+            First Name <input name='firstName' onChange = { onChange } />
+            Last Name <input name='lastName'  onChange = { onChange } />
+            Email <input name='email'  onChange = { onChange } />
+            GPA <input name='gpa'  onChange = { onChange } />
             Enroll At <select>
               <option value="--Not Enrolled--">--Not Enrolled--</option>
                 {
@@ -120,7 +120,7 @@
           </form>
           <ul>
             {
-              students.map(student => <li key={student.id}>{student.name}</li>)
+              students.map(student => <li key={student.id}>{student.name}<button onClick = { () => destroy(student.id) } >Destroy</button></li>)
             }
           </ul>
         </div>
@@ -136,17 +136,24 @@
         }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.destroy = this.destroy.bind(this);
       }
       // need an onChange so u can grab the values within the form
       // refer to thomas' notes he sent u on slack
       async onSubmit(ev) {
         ev.preventDefault();
         const student = (await axios.post('/students', this.state)).data;
-        const students = [...this.state.students, student]
+        const students = [...this.state.students, student];
+        console.log(student, 'hi', students)
         this.setState({ students });
       }
       onChange(ev) {
+        console.log('hi', {[ev.target.name]: ev.target.value})
         this.setState({[ev.target.name]: ev.target.value})
+      }
+      async destroy(id) {
+        await axios.delete(`/students/${id}`);
+        this.setState({ students : this.state.students.filter( student => student.id !== id ) })
       }
       async componentDidMount() {
         const urls = [
@@ -164,8 +171,8 @@
             <Route render = { () => <Nav { ...this.state } /> } />
               <div className='container'>
                 <Route exact path='/' render = { () => <Home { ...this.state }  /> } />
-                <Route path='/schools' render={ () => <Schools { ...this.state } onChange = { this.onChange } onSubmit = { this.onSubmit } /> } />
-                <Route path='/students' render={ ()=> <Students { ...this.state } onChange = { this.onChange } onSubmit = { this.onSubmit } /> } />
+                <Route path='/schools' render={ () => <Schools { ...this.state } onChange = { this.onChange } onSubmit = { this.onSubmit } destroy = { this.destroy } /> } />
+                <Route path='/students' render={ ()=> <Students { ...this.state } onChange = { this.onChange } onSubmit = { this.onSubmit } destroy = { this.destroy } /> } />
                   {
                 // <Route path='/schools:id' render={()=> <Schools />} />
                   }

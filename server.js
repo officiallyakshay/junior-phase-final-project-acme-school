@@ -37,6 +37,16 @@ app.post('/students', async ( req, res, next ) => {
   }
 });
 
+app.delete('/students/:id', async ( req, res, next ) => {
+  try {
+    await Students.destroy({ where: {id: req.params.id} });
+    res.sendStatus(201);
+  }
+  catch(ex) {
+    next(ex);
+  }
+});
+
 // '/schools/:id', //most popular? dont think this is right
 // '/schools/:id' //top school?
 

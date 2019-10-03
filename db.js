@@ -21,6 +21,9 @@ const Students = conn.define('students', {
   name: STRING
 });
 
+Students.belongsTo(Schools);
+Schools.hasMany(Students);
+
 const sync = async () => {
   await conn.sync({ force: true });
 

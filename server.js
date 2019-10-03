@@ -28,6 +28,15 @@ app.get('/students', async ( req, res, next ) => {
   }
 });
 
+app.post('/students', async ( req, res, next ) => {
+  try {
+    res.send(await Students.create(req.body));
+  }
+  catch(ex) {
+    next(ex);
+  }
+});
+
 // '/schools/:id', //most popular? dont think this is right
 // '/schools/:id' //top school?
 

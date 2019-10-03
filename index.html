@@ -63,6 +63,9 @@
               <option value="Harvard">Harvard</option>
               <option value="Cal Poly">Cal Poly</option>
               <option value="UC Berkeley">UC Berkeley</option>
+              {
+                // ^ grab form thru api / database instead of hardcoding ^
+              }
             </select>
             <button>Save</button>
           </form>
@@ -99,22 +102,21 @@
       );
     }
 
-    const Students = ({ students }) => {
+    const Students = ({ students, schools, onChange, onSubmit }) => {
       return (
         <div>
           <form className='form'>
-            First Name <input />
-            Last Name <input />
-            Email <input />
-            GPA <input />
+            First Name <input onChange = { onChange } />
+            Last Name <input onChange = { onChange } />
+            Email <input onChange = { onChange } />
+            GPA <input onChange = { onChange } />
             Enroll At <select>
               <option value="--Not Enrolled--">--Not Enrolled--</option>
-              <option value="MIT">MIT</option>
-              <option value="Harvard">Harvard</option>
-              <option value="Cal Poly">Cal Poly</option>
-              <option value="UC Berkeley">UC Berkeley</option>
+                {
+                  schools.map(school => <option key={school.id}>{school.name}</option>)
+                }
             </select>
-            <button>Save</button>
+            <button onClick = { onSubmit } >Save</button>
           </form>
           <ul>
             {
@@ -132,6 +134,19 @@
           schools: [],
           students: []
         }
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+      }
+      // need an onChange so u can grab the values within the form
+      // refer to thomas' notes he sent u on slack
+      async onSubmit(ev) {
+        ev.preventDefault();
+        const student = (await axios.post('/students', this.state)).data;
+        const students = [...this.state.students, student]
+        this.setState({ students });
+      }
+      onChange(ev) {
+        this.setState({[ev.target.name]: ev.target.value})
       }
       async componentDidMount() {
         const urls = [
@@ -148,22 +163,20 @@
           <HashRouter>
             <Route render = { () => <Nav { ...this.state } /> } />
               <div className='container'>
-                <Route exact path='/' render = { () => <Home { ...this.state } /> } />
-                <Route path='/schools' render={ () => <Schools { ...this.state } /> } />
-                <Route path='/students' render={()=> <Students { ...this.state } /> } />
+                <Route exact path='/' render = { () => <Home { ...this.state }  /> } />
+                <Route path='/schools' render={ () => <Schools { ...this.state } onChange = { this.onChange } onSubmit = { this.onSubmit } /> } />
+                <Route path='/students' render={ ()=> <Students { ...this.state } onChange = { this.onChange } onSubmit = { this.onSubmit } /> } />
                   {
                 // <Route path='/schools:id' render={()=> <Schools />} />
-                }
+                  }
               </div>
           </HashRouter>
         );
       }
     }
 
-
-
-    const root = document.querySelector('#root');
-    render(< App />, root)
+      const root = document.querySelector('#root');
+      render(< App />, root)
     </script>
     <!-- <header>
       <a href='#'>Acme Schools</a>

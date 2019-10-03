@@ -142,7 +142,9 @@
       // refer to thomas' notes he sent u on slack
       async onSubmit(ev) {
         ev.preventDefault();
-        const student = (await axios.post('/students', this.state)).data;
+        console.log(this.state)
+        const payload = {firstName: this.state.firstName, lastName: this.state.lastName, gpa: this.state.gpa, emal: this.state.email}
+        const student = (await axios.post('/students', payload)).data;
         const students = [...this.state.students, student];
         console.log(student, 'hi', students)
         this.setState({ students });

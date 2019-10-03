@@ -20,7 +20,8 @@ const Students = conn.define('students', {
   },
   firstName: STRING,
   lastName: STRING,
-  gpa: INTEGER
+  email: STRING,
+  gpa: STRING
 });
 
 Students.belongsTo(Schools);
@@ -36,8 +37,8 @@ const sync = async () => {
   const [ mit, yay ] = await Promise.all(schools.map( school => Schools.create(school)));
 
   const students = [
-    {name: 'jim'},
-    {name: 'dwight'}
+    {firstName: 'jim'},
+    {firstName: 'dwight'}
   ];
   const [ jim, dwight ] = await Promise.all(students.map( student => Students.create(student)));
 }

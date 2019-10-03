@@ -30,6 +30,7 @@ app.get('/students', async ( req, res, next ) => {
 
 app.post('/students', async ( req, res, next ) => {
   try {
+    console.log(req.body)
     res.send(await Students.create(req.body));
   }
   catch(ex) {

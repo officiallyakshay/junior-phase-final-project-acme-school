@@ -76,8 +76,8 @@
       );
     }
 
-    const Schools = ({ schools, onSubmit }) => {
-      // console.log(schools)
+    const Schools = ({ schools, students, onSubmit }) => {
+      console.log(schools)
       return (
         <div>
           <form className='form'>
@@ -95,7 +95,16 @@
           </form>
           <ul>
             {
-              schools.map(school => <li key={school.id}>{school.name}</li>)
+              schools.map(school => <li key={school.id}>
+                <a>{school.name}</a>
+                {`Student Count ${students.length} `}
+                <select>
+                  <option value="--Add Student--">--Not Enrolled--</option>
+                    {
+                      students.map(student => <option key={student.id}>{student.firstName} {student.lastName}</option>)
+                    }
+                </select>
+              </li>)
             }
           </ul>
         </div>
@@ -125,7 +134,12 @@
                 {student.firstName}
                 {student.lastName}
                 GPA:{student.gpa}
-                
+                <select>
+                  <option value="--Not Enrolled--">--Not Enrolled--</option>
+                    {
+                      schools.map(school => <option key={school.id}>{school.name}</option>)
+                    }
+                </select>
               <button onClick = { () => destroy(student.id) } >Destroy</button></li>)
             }
           </ul>
@@ -151,14 +165,10 @@
         const payload = {firstName: this.state.firstName, lastName: this.state.lastName, gpa: this.state.gpa, email: this.state.email, schoolId: this.state.schoolId}
         const student = (await axios.post('/students', payload)).data;
         const students = [...this.state.students, student];
-        console.log(student)
         this.setState({ students });
-        // console.log(this.state)
       }
       onChange(ev) {
-        // console.log('hi', {[ev.target.name]: ev.target.value})
         this.setState({[ev.target.name]: ev.target.value});
-        console.log(this.state);
       }
       async destroy(id) {
         await axios.delete(`/students/${id}`);

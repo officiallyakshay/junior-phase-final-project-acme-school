@@ -31,12 +31,21 @@ app.get('/students', async ( req, res, next ) => {
 });
 
 app.post('/students', async ( req, res, next ) => {
-  console.log(req.body.schoolId)
   try {
     const school = await Schools.findAll({ where: { name: req.body.schoolId }});
-    console.log(school);
+    req.body.schoolId = school[0].id;
     const student = await Students.create(req.body);
     res.send(student);
+  }
+  catch(ex) {
+    next(ex);
+  }
+});
+
+app.put('/students/:id', async ( req, res, next ) => {
+  try {
+    await Students.update({ where: {id: req.params.id} });
+    res.sendStatus(204);
   }
   catch(ex) {
     next(ex);
@@ -52,11 +61,6 @@ app.delete('/students/:id', async ( req, res, next ) => {
     next(ex);
   }
 });
-
-// '/schools/:id', //most popular? dont think this is right
-// '/schools/:id' //top school?
-
-
 
 db.sync()
   .then(() => {

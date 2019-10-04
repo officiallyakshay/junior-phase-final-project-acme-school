@@ -103,6 +103,7 @@
     }
 
     const Students = ({ students, schools, onChange, onSubmit, destroy }) => {
+      // console.log(students)
       return (
         <div>
           <form className='form'>
@@ -120,7 +121,7 @@
           </form>
           <ul>
             {
-              students.map(student => <li key={student.id}>{student.name}<button onClick = { () => destroy(student.id) } >Destroy</button></li>)
+              students.map(student => <li key={student.id}>{student.firstName} {student.lastName} GPA:{student.gpa}<button onClick = { () => destroy(student.id) } >Destroy</button></li>)
             }
           </ul>
         </div>
@@ -142,15 +143,15 @@
       // refer to thomas' notes he sent u on slack
       async onSubmit(ev) {
         ev.preventDefault();
-        console.log(this.state)
-        const payload = {firstName: this.state.firstName, lastName: this.state.lastName, gpa: this.state.gpa, emal: this.state.email}
+        const payload = {firstName: this.state.firstName, lastName: this.state.lastName, gpa: this.state.gpa, email: this.state.email}
         const student = (await axios.post('/students', payload)).data;
         const students = [...this.state.students, student];
-        console.log(student, 'hi', students)
+        // console.log(student, 'hi', students)
         this.setState({ students });
+        // console.log(this.state)
       }
       onChange(ev) {
-        console.log('hi', {[ev.target.name]: ev.target.value})
+        // console.log('hi', {[ev.target.name]: ev.target.value})
         this.setState({[ev.target.name]: ev.target.value})
       }
       async destroy(id) {

@@ -1,0 +1,32 @@
+{
+  "name": "junior-phase-final-project-acme-school",
+  "version": "1.0.0",
+  "description": "",
+  "main": "db.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^7.12.1",
+    "react": "^16.10.1",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.4",
+    "sequelize": "^5.19.2",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/officiallyakshay/junior-phase-final-project-acme-school.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/officiallyakshay/junior-phase-final-project-acme-school/issues"
+  },
+  "homepage": "https://github.com/officiallyakshay/junior-phase-final-project-acme-school#readme"
+}

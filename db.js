@@ -28,7 +28,7 @@ Students.belongsTo(Schools);
 Schools.hasMany(Students);
 
 const sync = async () => {
-  await conn.sync({ force: true });
+  await conn.sync({ force: false });
 
   const schools = [
     {name: 'mit'},

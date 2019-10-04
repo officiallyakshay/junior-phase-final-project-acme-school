@@ -6,6 +6,8 @@ const { models: { Schools, Students } } = require('./db')
 
 const port = process.env.PORT || 3001;
 
+app.use(express.json());
+
 app.get('/', (req, res, next) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });

@@ -77,7 +77,7 @@
     }
 
     const Schools = ({ schools, students, onSubmit }) => {
-      console.log(schools)
+      console.log('hey', schools)
       return (
         <div>
           <form className='form'>
@@ -112,7 +112,7 @@
     }
 
     const Students = ({ students, schools, onChange, onSubmit, destroy }) => {
-      // console.log(students)
+      console.log('hi', students)
       return (
         <div>
           <form className='form'>
@@ -137,7 +137,7 @@
                 <select>
                   <option value="--Not Enrolled--">--Not Enrolled--</option>
                     {
-                      schools.map(school => <option key={school.id}>{school.name}</option>)
+                      schools.map(school => <option key={school.id}>{school.name} {school.id === student.schoolId ? 'hi' : 'hey'}</option>)
                     }
                 </select>
               <button onClick = { () => destroy(student.id) } >Destroy</button></li>)

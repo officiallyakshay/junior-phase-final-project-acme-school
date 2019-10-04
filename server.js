@@ -22,8 +22,9 @@ app.get('/schools', async ( req, res, next ) => {
 });
 
 app.get('/schools/:id', async ( req, res, next ) => {
+  console.log(req)
   try {
-    res.send(await Schools.findAll());
+    res.send(await Schools.findOne({ where: { id: req.body.schoolId }}));
   }
   catch(ex) {
     next(ex);

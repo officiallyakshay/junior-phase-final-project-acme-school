@@ -93,10 +93,10 @@
             </select>
             <button onClick = { onSubmit } >Save</button>
           </form>
-          <ul>
+          <ul style={{listStyleType: 'none', margin: 'auto', height: '25vh', width: '50vw', display: 'flex', justifyContent: 'space-evenly'}}>
             {
-              schools.map(school => <li key={school.id}>
-                <a href={`/schools/${school.id}`}>{school.name}</a>
+              schools.map(school => <li key={school.id} style={{padding: '2rem', display: 'flex', flexWrap: 'wrap', textAlign: 'center', backgroundColor: 'lightBlue'}}>
+                <a href={`#/schools/${school.id}`}>{school.name}</a>
                 {`Student Count ${students.length} `}
                 <select>
                   <option value="--Add Student--">--Not Enrolled--</option>
@@ -147,6 +147,19 @@
       );
     }
 
+    const RespectiveSchool = ({ schools }) => {
+      return (
+      <div style={{margin: 'auto', height: '75vh', width: '50vw', display: 'flex', justifyContent: 'space-evenly'}}>
+        {
+          schools.map(school => <div style={{height: '50px', width:'100px'}}><li key={school.id}>
+            <div>{school.name}</div>
+            <div>{school.imageURL}</div>
+          </li></div>)
+        }
+      </div>
+      );
+    }
+
     class App extends Component {
       constructor() {
         super();
@@ -190,11 +203,9 @@
             <Route render = { () => <Nav { ...this.state } /> } />
               <div className='container'>
                 <Route exact path='/' render = { () => <Home { ...this.state }  /> } />
-                <Route path='/schools' render={ () => <Schools { ...this.state } onChange = { this.onChange } onSubmit = { this.onSubmit } destroy = { this.destroy } /> } />
+                <Route exact path='/schools' render={ () => <Schools { ...this.state } onChange = { this.onChange } onSubmit = { this.onSubmit } destroy = { this.destroy } /> } />
                 <Route path='/students' render={ ()=> <Students { ...this.state } onChange = { this.onChange } onSubmit = { this.onSubmit } destroy = { this.destroy } /> } />
-                  {
-                // <Route path='/schools:id' render={()=> <Schools />} />
-                  }
+                <Route path='/schools/:id' render={ ()=> <RespectiveSchool { ...this.state } /> } />
               </div>
           </HashRouter>
         );

@@ -76,7 +76,8 @@
       );
     }
 
-    const Schools = ({ schools }) => {
+    const Schools = ({ schools, onSubmit }) => {
+      // console.log(schools)
       return (
         <div>
           <form className='form'>
@@ -86,12 +87,11 @@
             GPA <input />
             Enroll At <select>
               <option value="--Not Enrolled--">--Not Enrolled--</option>
-              <option value="MIT">MIT</option>
-              <option value="Harvard">Harvard</option>
-              <option value="Cal Poly">Cal Poly</option>
-              <option value="UC Berkeley">UC Berkeley</option>
+                {
+                  schools.map(school => <option key={school.id}>{school.name}</option>)
+                }
             </select>
-            <button>Save</button>
+            <button onClick = { onSubmit } >Save</button>
           </form>
           <ul>
             {
@@ -111,7 +111,7 @@
             Last Name <input name='lastName'  onChange = { onChange } />
             Email <input name='email'  onChange = { onChange } />
             GPA <input name='gpa'  onChange = { onChange } />
-            Enroll At <select>
+            Enroll At <select name='schoolId' onChange = { onChange } >
               <option value="--Not Enrolled--">--Not Enrolled--</option>
                 {
                   schools.map(school => <option key={school.id}>{school.name}</option>)
@@ -121,7 +121,12 @@
           </form>
           <ul>
             {
-              students.map(student => <li key={student.id}>{student.firstName} {student.lastName} GPA:{student.gpa}<button onClick = { () => destroy(student.id) } >Destroy</button></li>)
+              students.map(student => <li key={student.id}>
+                {student.firstName}
+                {student.lastName}
+                GPA:{student.gpa}
+                
+              <button onClick = { () => destroy(student.id) } >Destroy</button></li>)
             }
           </ul>
         </div>
@@ -143,16 +148,17 @@
       // refer to thomas' notes he sent u on slack
       async onSubmit(ev) {
         ev.preventDefault();
-        const payload = {firstName: this.state.firstName, lastName: this.state.lastName, gpa: this.state.gpa, email: this.state.email}
+        const payload = {firstName: this.state.firstName, lastName: this.state.lastName, gpa: this.state.gpa, email: this.state.email, schoolId: this.state.schoolId}
         const student = (await axios.post('/students', payload)).data;
         const students = [...this.state.students, student];
-        // console.log(student, 'hi', students)
+        console.log(student)
         this.setState({ students });
         // console.log(this.state)
       }
       onChange(ev) {
         // console.log('hi', {[ev.target.name]: ev.target.value})
-        this.setState({[ev.target.name]: ev.target.value})
+        this.setState({[ev.target.name]: ev.target.value});
+        console.log(this.state);
       }
       async destroy(id) {
         await axios.delete(`/students/${id}`);

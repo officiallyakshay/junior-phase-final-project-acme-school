@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const { STRING, UUID, UUIDV4, INTEGER } = Sequelize;
 
-const conn = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/junior_phase_final_project_acme_school');
+const conn = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/junior_phase_final_project_acme_school', { logging: false });
 
 const Schools = conn.define('schools', {
   id: {
@@ -30,17 +30,17 @@ Schools.hasMany(Students);
 const sync = async () => {
   await conn.sync({ force: false });
 
-  const schools = [
-    {name: 'mit'},
-    {name: 'yay'}
-  ];
-  const [ mit, yay ] = await Promise.all(schools.map( school => Schools.create(school)));
+  // const schools = [
+  //   {name: 'mit'},
+  //   {name: 'yay'}
+  // ];
+  // const [ mit, yay ] = await Promise.all(schools.map( school => Schools.create(school)));
 
-  const students = [
-    {firstName: 'jim'},
-    {firstName: 'dwight'}
-  ];
-  const [ jim, dwight ] = await Promise.all(students.map( student => Students.create(student)));
+  // const students = [
+    // {firstName: 'jim'},
+    // {firstName: 'dwight'}
+  // ];
+  // const [ jim, dwight ] = await Promise.all(students.map( student => Students.create(student)));
 }
 
 module.exports = {

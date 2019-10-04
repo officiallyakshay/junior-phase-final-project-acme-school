@@ -31,9 +31,12 @@ app.get('/students', async ( req, res, next ) => {
 });
 
 app.post('/students', async ( req, res, next ) => {
+  console.log(req.body.schoolId)
   try {
-    console.log(req.body)
-    res.send(await Students.create(req.body));
+    const school = await Schools.findAll({ where: { name: req.body.schoolId }});
+    console.log(school);
+    const student = await Students.create(req.body);
+    res.send(student);
   }
   catch(ex) {
     next(ex);

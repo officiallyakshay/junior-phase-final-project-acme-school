@@ -96,7 +96,7 @@
           <ul>
             {
               schools.map(school => <li key={school.id}>
-                <a>{school.name}</a>
+                <a href={`/schools/${school.id}`}>{school.name}</a>
                 {`Student Count ${students.length} `}
                 <select>
                   <option value="--Add Student--">--Not Enrolled--</option>

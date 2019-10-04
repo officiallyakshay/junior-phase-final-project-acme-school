@@ -21,6 +21,15 @@ app.get('/schools', async ( req, res, next ) => {
   }
 });
 
+app.get('/schools/:id', async ( req, res, next ) => {
+  try {
+    res.send(await Schools.findAll());
+  }
+  catch(ex) {
+    next(ex);
+  }
+});
+
 app.get('/students', async ( req, res, next ) => {
   try {
     res.send(await Students.findAll());

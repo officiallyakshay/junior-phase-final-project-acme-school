@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const db = require('./db');
-const { models: { Schools, Students } } = require('./db')
+const { models: { Schools, Students } } = require('./db');
 
 const port = process.env.PORT || 3001;
 
@@ -11,6 +11,8 @@ app.use(express.json());
 app.get('/', (req, res, next) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
+
+app.use('/dist', express.static(path.join(__dirname, 'dist')));
 
 app.get('/schools', async ( req, res, next ) => {
   try {
@@ -54,8 +56,8 @@ app.post('/students', async ( req, res, next ) => {
 
 app.put('/students/:id', async ( req, res, next ) => {
   try {
-    await Students.update({ where: {id: req.params.id} });
-    res.sendStatus(204);
+    const student = await Students.update(req.body, { where: {id: req.params.id} });
+    res.json(student);
   }
   catch(ex) {
     next(ex);

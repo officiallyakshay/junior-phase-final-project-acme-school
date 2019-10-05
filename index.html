@@ -128,16 +128,16 @@
             </select>
             <button onClick = { onSubmit } >Save</button>
           </form>
-          <ul>
+          <ul style={{listStyleType: 'none', margin: 'auto', height: '25vh', width: '50vw', display: 'flex', justifyContent: 'space-evenly'}}>
             {
-              students.map(student => <li key={student.id}>
+              students.map(student => <li key={student.id} style={{padding: '2rem', display: 'flex', flexWrap: 'wrap', textAlign: 'center', backgroundColor: 'lightBlue'}}>
                 {student.firstName}
                 {student.lastName}
                 GPA:{student.gpa}
                 <select>
                   <option value="--Not Enrolled--">--Not Enrolled--</option>
                     {
-                      schools.map(school => <option key={school.id}>{school.name} {school.id === student.schoolId ? 'hi' : 'hey'}</option>)
+                      schools.map(school => <option selected={school.id === student.schoolId} key={school.id}>{school.name}</option>)
                     }
                 </select>
               <button onClick = { () => destroy(student.id) } >Destroy</button></li>)
@@ -147,17 +147,79 @@
       );
     }
 
-    const RespectiveSchool = ({ schools }) => {
+    const RespectiveSchool = ({ schools, students, destroy, onChange, onSubmit }) => {
       return (
-      <div style={{margin: 'auto', height: '75vh', width: '50vw', display: 'flex', justifyContent: 'space-evenly'}}>
-        {
-          schools.map(school => <div style={{height: '50px', width:'100px'}}><li key={school.id}>
-            <div>{school.name}</div>
-            <div>{school.imageURL}</div>
-          </li></div>)
-        }
-      </div>
+        <div>
+          <form className='form'>
+            First Name <input name='firstName' onChange = { onChange } />
+            Last Name <input name='lastName'  onChange = { onChange } />
+            Email <input name='email'  onChange = { onChange } />
+            GPA <input name='gpa'  onChange = { onChange } />
+            Enroll At <select name='schoolId' onChange = { onChange } >
+              <option value="--Not Enrolled--">--Not Enrolled--</option>
+                {
+                  schools.map(school => <option key={school.id}>{school.name}</option>)
+                }
+            </select>
+            <button onClick = { onSubmit } >Save</button>
+          </form>
+          <div style={{height: '50px', width:'100px', listStyleType: 'none'}}>
+            <div>
+              {
+                // schools.map(school => <option key={school.id}>{school.name}</option>)           
+              }
+            </div>
+            <select>
+              <option value="--Not Enrolled--">--Not Enrolled--</option>
+                {
+                  students.map(student => <option key={student.id}>{student.firstName} {student.lastName}</option>)
+                }
+            </select>
+          </div>
+          <ul>
+            {
+              students.map(student => <li key={student.id} style={{padding: '2rem', display: 'flex', flexWrap: 'wrap', textAlign: 'center', backgroundColor: 'lightBlue'}}>
+                {student.firstName}
+                {student.lastName}
+                GPA:{student.gpa}
+                <select>
+                  <option value="--Not Enrolled--">--Not Enrolled--</option>
+                    {
+                      schools.map(school => <option selected={school.id === student.schoolId} key={school.id}>{school.name} {school.id === student.schoolId ? 'hi' : 'hey'}</option>)
+                    }
+                </select>
+              <button onClick = { () => destroy(student.id) } >Destroy</button></li>)
+            }
+          </ul>
+        </div>
       );
+      // return (
+      // <div style={{margin: 'auto', height: '75vh', width: '50vw', display: 'flex', justifyContent: 'space-evenly'}}>
+      //   <div style={{height: '50px', width:'100px', listStyleType: 'none'}}>
+      //     <select>
+      //       <option value="--Not Enrolled--">--Not Enrolled--</option>
+      //         {
+      //           schools.map(school => <option key={school.id}>{school.name}</option>)
+      //         }
+      //     </select>
+      //   </div>
+      //   <ul>
+      //   {
+      //     students.map(student => <li key={student.id}>
+      //       {
+      //         schools.map(school => <div style={{height: '50px', width:'100px', listStyleType: 'none'}}><li key={school.id}>
+      //             {school.id === student.schoolId ? student.firstName : ''}
+      //             <button onClick = { () => destroy(student.id) } >Destroy</button>
+      //             {
+      //           // <img src={school.imageURL} alt='baddass-school' />
+      //             }
+      //         </li></div>)
+      //       }
+      //     </li>)
+      //   }
+      //   </ul>
+      // </div>
+      // );
     }
 
     class App extends Component {
@@ -205,7 +267,7 @@
                 <Route exact path='/' render = { () => <Home { ...this.state }  /> } />
                 <Route exact path='/schools' render={ () => <Schools { ...this.state } onChange = { this.onChange } onSubmit = { this.onSubmit } destroy = { this.destroy } /> } />
                 <Route path='/students' render={ ()=> <Students { ...this.state } onChange = { this.onChange } onSubmit = { this.onSubmit } destroy = { this.destroy } /> } />
-                <Route path='/schools/:id' render={ ()=> <RespectiveSchool { ...this.state } /> } />
+                <Route path='/schools/:id' render={ ()=> <RespectiveSchool { ...this.state } onChange = { this.onChange } onSubmit = { this.onSubmit } destroy = { this.destroy } /> } />
               </div>
           </HashRouter>
         );

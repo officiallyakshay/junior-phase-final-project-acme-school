@@ -1,3 +1,5 @@
+import React from 'react';
+
 const RespectiveSchool = ({ schools, students, destroy, onChange, onSubmit, schoolId }) => {
     return (
       <div>
@@ -47,3 +49,5 @@ const RespectiveSchool = ({ schools, students, destroy, onChange, onSubmit, scho
       </div>
     );
   }
+
+export default RespectiveSchool;

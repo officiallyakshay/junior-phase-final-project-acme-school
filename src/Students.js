@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Students = ({ students, schools, onChange, onSubmit, destroy }) => {
     console.log('hi', students)
     return (
@@ -33,3 +35,5 @@ const Students = ({ students, schools, onChange, onSubmit, destroy }) => {
       </div>
     );
   }
+
+  export default Students;

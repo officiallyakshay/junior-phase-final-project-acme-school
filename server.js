@@ -33,7 +33,7 @@ app.get('/schools/:id', async ( req, res, next ) => {
   }
 });
 
-app.get('/students', async ( req, res, next ) => {
+app.get('/api/students', async ( req, res, next ) => {
   try {
     res.send(await Students.findAll());
   }
@@ -42,10 +42,10 @@ app.get('/students', async ( req, res, next ) => {
   }
 });
 
-app.post('/students', async ( req, res, next ) => {
+app.post('/api/students', async ( req, res, next ) => {
   try {
-    const school = await Schools.findAll({ where: { name: req.body.schoolId }});
-    req.body.schoolId = school[0].id;
+    // const school = await Schools.findAll({ where: { name: req.body.schoolId }});
+    // req.body.schoolId = school[0].id;
     const student = await Students.create(req.body);
     res.send(student);
   }
@@ -64,7 +64,7 @@ app.put('/students/:id', async ( req, res, next ) => {
   }
 });
 
-app.delete('/students/:id', async ( req, res, next ) => {
+app.delete('/api/students/:id', async ( req, res, next ) => {
   try {
     await Students.destroy({ where: {id: req.params.id} });
     res.sendStatus(201);

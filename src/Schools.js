@@ -1,84 +1,41 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
-import { setStudentsThunks, createStudentThunks, destroyThunks } from '../reducers/students';
-import { setSchoolsThunks } from '../reducers/schools';
+// import React from 'react';
+// import {connect} from 'react-redux';
+// import { setStudentsThunks, createStudentThunks, destroyThunks } from '../reducers/students';
+// import { setSchoolsThunks } from '../reducers/schools';
 
-class Schools extends React.Component {
-    constructor() {
-        super();
-    }
-    async componentDidMount() {
-        await this.props.setSchools();
-        await this.props.setStudents();
-    }
-    render() {
-        const {schools} = this.props;
-        return (
-            <div>
-            {
-                schools.map(school => {
-                    return (
-                        <div key={school.id}>
-                            <Link to={`school/${school.id}`}>{school.name}</Link>
-                        </div>
-                    )
-                })
-            }
-            </div>
-        )
-    }
-};
+// class Schools extends React.Component {
+//     constructor() {
+//         super();
+//     }
+//     async componentDidMount() {
+//         await this.props.setSchools();
+//         await this.props.setStudents();
+//     }
+//     render() {
+//         return (
+//             <div>
+//             {
+//                 <SchoolForm />
+//             }
+//             </div>
+//         )
+//     }
+// };
 
-const mapStateToSchoolsProps = state => {
-    return {
-        students: state.students,
-        schools: state.schools
-    }
-}
+// const mapStateToSchoolsProps = state => {
+//     return {
+//         students: state.students,
+//         schools: state.schools
+//     }
+// }
 
-const mapDispatchToSchoolsProps = {
-    setStudents: setStudentsThunks,
-    createStudent: createStudentThunks,
-    destroy: destroyThunks,
-    setSchools: setSchoolsThunks,
-    createSchool: createSchoolThunks,
-    destroy: destroyThunk
-}
+// const mapDispatchToSchoolsProps = {
+//     setStudents: setStudentsThunks,
+//     createStudent: createStudentThunks,
+//     destroy: destroyThunks,
+//     setSchools: setSchoolsThunks,
+//     createSchool: createSchoolThunks,
+//     destroy: destroyThunk
+// }
 
-export default connect(mapStateToSchoolsProps, mapDispatchToSchoolsProps)(Schools);
-
-// const Schools = ({ schools, students, onSubmit, onChange }) => {
-//     console.log('hey', schools)
-//     return (
-//       <div>
-//         <form className='form'>
-//           First Name <input name='firstName' onChange = { onChange } />
-//           Last Name <input name='lastName'  onChange = { onChange } />
-//           Email <input name='email'  onChange = { onChange } />
-//           GPA <input name='gpa'  onChange = { onChange } />
-//           Enroll At <select name='schoolId' onChange = { onChange } >
-//             <option value="--Not Enrolled--">--Not Enrolled--</option>
-//               {
-//                 schools.map(school => <option key={school.id}>{school.name}</option>)
-//               }
-//           </select>
-//           <button onClick = { onSubmit } >Save</button>
-//         </form>
-//         <ul style={{listStyleType: 'none', margin: 'auto', height: '25vh', width: '50vw', display: 'flex', justifyContent: 'space-evenly'}}>
-//           {
-//             schools.map(school => <li key={school.id} style={{padding: '2rem', display: 'flex', flexWrap: 'wrap', textAlign: 'center', backgroundColor: 'lightBlue'}}>
-//               <a href={`#/schools/${school.id}`}>{school.name}</a>
-//               {`Student Count ${students.length} `}
-//               <select>
-//                 <option value="--Add Student--">--Add Student--</option>
-//                   {
-//                     students.map(student => <option key={student.id}>{student.firstName} {student.lastName}</option>)
-//                   }
-//               </select>
-//             </li>)
-//           }
-//         </ul>
-//       </div>
-//     );
-//   }
+// export default connect(mapStateToSchoolsProps, mapDispatchToSchoolsProps)(Schools);

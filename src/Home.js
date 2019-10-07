@@ -1,32 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setStudentsThunks, createStudentThunks, destroyThunks } from '../reducers/students';
-import { setSchoolsThunks, createSchoolThunks, destroyThunk } from '../reducers/schools';
+// import { setStudentsThunks, createStudentThunks, destroyThunks } from '../reducers/students';
+// import { setSchoolsThunks, createSchoolThunks, destroyThunk } from '../reducers/schools';
 
 class Home extends React.Component {
     constructor() {
         super();
-    this.onChange = this.onChange.bind(this);
-    this.create = this.create.bind(this);
-    this.destroy = this.destroy.bind(this);
-    }
-    async componentDidMount() {
-        await this.props.setStudents();
-    }
-    onChange(ev) {
-        this.setState({[ev.target.name]: ev.target.value});        
-    }
-    async create(ev) {
-        ev.preventDefault();
-        const payload = {firstName: this.state.firstName, lastName: this.state.lastName, gpa: this.state.gpa, email: this.state.email, schoolId: this.state.schoolId}
-        await this.props.createStudent(payload);
-    }
-    async destroy(id) {
-        await this.props.destroy(id);
-        // this.setState({ students : this.state.students.filter( student => student.id !== id ) })
     }
     render() {
-        const { onChange, create, destroy } = this;
+        const { onChange, create } = this;
         return (
         <div>
             <form className='form'>

@@ -5,8 +5,4 @@ import { Provider } from 'react-redux';
 import App from './App';
 import store from '../store';
 
-
-
-// const App = connect()(_App)
-
 ReactDOM.render( <Provider store={store}><HashRouter>< App /></HashRouter></Provider>, document.getElementById('root') );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import Home from './Home';
 import Students from './Students';
 import Schools from './Schools';
@@ -15,16 +15,13 @@ const Nav = ({ schools, students }) => {
   return (
     <nav>
       <a href='/'>Acme School</a>
-        {/* <div>
+        <div>
           {
             links.map( link=> <NavLink key={ link.text } to={ link.to }>{ link.text }</NavLink>)
           }
-        </div> */}
+        </div>
     </nav>
   );
 }
-
-// const Nav = connect()(_Nav);
-
 
 export default Nav;

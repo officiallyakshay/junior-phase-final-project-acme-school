@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setStudentsThunks, createStudentThunks, destroyThunks } from '../reducers/students';
+import { setSchoolsThunks, createSchoolThunks, destroyThunk } from '../reducers/schools';
 
 class Home extends React.Component {
     constructor() {
@@ -26,7 +27,6 @@ class Home extends React.Component {
     }
     render() {
         const { onChange, create, destroy } = this;
-        console.log(this.props.students);
         return (
         <div>
             <form className='form'>
@@ -41,11 +41,6 @@ class Home extends React.Component {
                 }
             </select> */}
             <button onClick = { create } >Save</button>
-            <ul>
-                {
-                    this.props.students.map( student => <li key={student.id}>{student.firstName}<button onClick = { () => destroy(student.id) }> Destroy </button></li>)
-                }
-            </ul>
             </form>
             <h1>Home</h1>
             <p>Our most popular school is <a></a> with students.</p>
@@ -55,16 +50,4 @@ class Home extends React.Component {
     }
 }
 
-const mapState = state => {
-    return {
-        students: state.students
-    }
-};
-
-const mapDispatch = {
-    setStudents: setStudentsThunks,
-    createStudent: createStudentThunks,
-    destroy: destroyThunks
-}
-
-export default connect(mapState, mapDispatch)(Home);
+export default Home;

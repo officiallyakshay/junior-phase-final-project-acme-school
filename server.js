@@ -14,7 +14,7 @@ app.get('/', (req, res, next) => {
 
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 
-app.get('/schools', async ( req, res, next ) => {
+app.get('/api/schools', async ( req, res, next ) => {
   try {
     res.send(await Schools.findAll());
   }
@@ -23,7 +23,7 @@ app.get('/schools', async ( req, res, next ) => {
   }
 });
 
-app.get('/schools/:id', async ( req, res, next ) => {
+app.get('/api/schools/:id', async ( req, res, next ) => {
   console.log(req.body)
   try {
     res.send(await Schools.findOne({ where: { id: req.body.schoolId }}));
@@ -54,7 +54,7 @@ app.post('/api/students', async ( req, res, next ) => {
   }
 });
 
-app.put('/students/:id', async ( req, res, next ) => {
+app.put('/api/students/:id', async ( req, res, next ) => {
   try {
     const student = await Students.update(req.body, { where: {id: req.params.id} });
     res.json(student);

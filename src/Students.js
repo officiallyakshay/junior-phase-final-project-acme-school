@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { setStudentsThunks, createStudentThunks, destroyThunks } from '../reducers/students';
 import StudentForm from './StudentForm';
+import { setStudentsThunks, createStudentThunks, destroyThunks } from '../reducers/students';
 // import { setSchoolsThunks } from '../reducers/schools';
 
 class Students extends React.Component {

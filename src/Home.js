@@ -8,7 +8,8 @@ class Home extends React.Component {
         super();
     }
     render() {
-        const { onChange, create } = this;
+        console.log(this.props)
+        const { onChange, create } = this; //this.props ?
         return (
         <div>
             <form className='form'>

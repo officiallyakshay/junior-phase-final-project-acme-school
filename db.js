@@ -28,16 +28,16 @@ Students.belongsTo(Schools);
 Schools.hasMany(Students);
 
 const sync = async () => {
-  await conn.sync({ force: false });
+  await conn.sync({ force: true });
 
-  // const schools = [
-  //   {name: 'MIT'},
-  //   {name: 'Harvard'},
-  //   {name: 'UCLA'},
-  //   {name: 'Stanford'},
-  //   {name: 'Cal_Poly'}
-  // ];
-  // const [ MIT, Harvard, UCLA, Stanford, Cal_Poly ] = await Promise.all(schools.map( school => Schools.create(school)));
+  const schools = [
+    {name: 'MIT'},
+    {name: 'Harvard'},
+    {name: 'UCLA'},
+    {name: 'Stanford'},
+    {name: 'Cal_Poly'}
+  ];
+  const [ MIT, Harvard, UCLA, Stanford, Cal_Poly ] = await Promise.all(schools.map( school => Schools.create(school)));
 
   // const students = [
     // {firstName: 'jim'},

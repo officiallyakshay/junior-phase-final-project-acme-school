@@ -1,12 +1,14 @@
 import React from 'react';
 // import Students from './Students';
 import students from '../reducers/students';
-// import {connect} from 'react-redux';
-// import { setStudentsThunks, createStudentThunks, destroyThunks } from '../reducers/students';
 // import schools from '../reducers/schools';
+import {connect} from 'react-redux';
+import { setStudentsThunks, createStudentThunks, destroyThunks } from '../reducers/students';
+// import { setSchoolsThunks } from '../reducers/schools';
 
 const Students = ({ students, schools, onChange, create, destroy }) => {
     console.log('hi', students)
+    console.log('hey', schools)
     return (
       <div>
         <form className='form'>
@@ -41,21 +43,18 @@ const Students = ({ students, schools, onChange, create, destroy }) => {
     );
   }
 
-//   const mapStateToStudentsProps = state => {
-//     return {
-//         students: state.students
-//         // schools: state.schools
-//     }
-// }
+  const mapStateToStudentsProps = state => {
+    return {
+        students: state.students,
+        // schools: state.schools
+    }
+}
 
-// const mapDispatchToStudentsProps = {
-//     setStudents: setStudentsThunks,
-//     createStudent: createStudentThunks,
-//     destroy: destroyThunks
-//     // setSchools: setSchoolsThunks,
-//     // createSchool: createSchoolThunks,
-//     // destroy: destroyThunk
-// }
-export default Students;
+const mapDispatchToStudentsProps = {
+    setStudents: setStudentsThunks,
+    createStudent: createStudentThunks,
+    destroy: destroyThunks,
+    // setSchools: setSchoolsThunks,
+}
 
-// export default connect(mapStateToStudentsProps, mapDispatchToStudentsProps)(Students);
+export default connect(mapStateToStudentsProps, mapDispatchToStudentsProps)(Students);

@@ -13,6 +13,7 @@ class Students extends React.Component {
     }
     async componentDidMount() {
         await this.props.setStudents();
+        // await this.props.setSchools();
     }
     onChange(ev) {
       console.log('hi')
@@ -50,9 +51,7 @@ const mapDispatchToStudentsProps = {
     setStudents: setStudentsThunks,
     createStudent: createStudentThunks,
     destroy: destroyThunks,
-    // setSchools: setSchoolsThunks,
-    // createSchool: createSchoolThunks,
-    // destroy: destroyThunk
+    // setSchools: setSchoolsThunks
 }
 
 export default connect(mapStateToStudentsProps, mapDispatchToStudentsProps)(Students);

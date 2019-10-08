@@ -1,9 +1,11 @@
 import React from 'react';
 // import Students from './Students';
 import students from '../reducers/students';
+// import {connect} from 'react-redux';
+// import { setStudentsThunks, createStudentThunks, destroyThunks } from '../reducers/students';
 // import schools from '../reducers/schools';
 
-const Students = ({ students, schools, onChange, onSubmit, destroy }) => {
+const Students = ({ students, schools, onChange, create, destroy }) => {
     console.log('hi', students)
     return (
       <div>
@@ -18,7 +20,7 @@ const Students = ({ students, schools, onChange, onSubmit, destroy }) => {
                 schools.map(school => <option key={school.id}>{school.name}</option>)
               }
           </select> */}
-          <button onClick = { onSubmit } >Save</button>
+          <button onClick = { create } >Save</button>
         </form>
         <ul style={{listStyleType: 'none', margin: 'auto', height: '25vh', width: '50vw', display: 'flex', justifyContent: 'space-evenly'}}>
           {
@@ -39,4 +41,21 @@ const Students = ({ students, schools, onChange, onSubmit, destroy }) => {
     );
   }
 
-  export default Students;
+//   const mapStateToStudentsProps = state => {
+//     return {
+//         students: state.students
+//         // schools: state.schools
+//     }
+// }
+
+// const mapDispatchToStudentsProps = {
+//     setStudents: setStudentsThunks,
+//     createStudent: createStudentThunks,
+//     destroy: destroyThunks
+//     // setSchools: setSchoolsThunks,
+//     // createSchool: createSchoolThunks,
+//     // destroy: destroyThunk
+// }
+export default Students;
+
+// export default connect(mapStateToStudentsProps, mapDispatchToStudentsProps)(Students);

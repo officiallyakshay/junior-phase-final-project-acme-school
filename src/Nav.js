@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+// import { setStudentsThunks, createStudentThunks, destroyThunks } from '../reducers/students';
 import Home from './Home';
 import Students from './Students';
 import Schools from './Schools';
@@ -23,5 +24,21 @@ const Nav = ({ schools, students }) => {
     </nav>
   );
 }
+// const mapStateToStudentsProps = state => {
+//   return {
+//       students: state.students,
+//       // schools: state.schools
+//   }
+// }
 
+// const mapDispatchToStudentsProps = {
+//   setStudents: setStudentsThunks,
+//   createStudent: createStudentThunks,
+//   destroy: destroyThunks,
+//   // setSchools: setSchoolsThunks,
+//   // createSchool: createSchoolThunks,
+//   // destroy: destroyThunk
+// }
+
+// export default connect(mapStateToStudentsProps, mapDispatchToStudentsProps)(Nav);
 export default Nav;

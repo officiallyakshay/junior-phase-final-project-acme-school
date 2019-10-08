@@ -15,9 +15,11 @@ class Students extends React.Component {
         await this.props.setStudents();
     }
     onChange(ev) {
+      console.log('hi')
         this.setState({[ev.target.name]: ev.target.value});        
     }
     async create(ev) {
+      console.log('hey')
         ev.preventDefault();
         const payload = {firstName: this.state.firstName, lastName: this.state.lastName, gpa: this.state.gpa, email: this.state.email, schoolId: this.state.schoolId}
         await this.props.createStudent(payload);
@@ -26,15 +28,11 @@ class Students extends React.Component {
         await this.props.destroy(id);
         // this.setState({ students : this.state.students.filter( student => student.id !== id ) })
     }
-    async componentDidMount() {
-        await this.props.setStudents();
-        // await this.props.setSchools();
-    }
     render() {
         return (
             <div>
             {
-              <StudentForm />
+              <StudentForm onChange = { this.onChange } create = { this.create } destroy = { this.destroy }/>
             }
             </div>
         )

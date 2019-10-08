@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 // import { setStudentsThunks, createStudentThunks, destroyThunks } from '../reducers/students';
 // import { setSchoolsThunks, createSchoolThunks, destroyThunk } from '../reducers/schools';
 
@@ -8,7 +8,6 @@ class Home extends React.Component {
         super();
     }
     render() {
-        console.log(this.props)
         const { onChange, create } = this; //this.props ?
         return (
         <div>

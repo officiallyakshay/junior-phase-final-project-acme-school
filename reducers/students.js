@@ -29,6 +29,7 @@ export const setStudentsThunks = () => async dispatch => {
 };
 
 export const createStudentThunks = (payload) => async dispatch => {
+    console.log(payload)
     const student = (await axios.post('/api/students', payload)).data;
     dispatch(createStudent(student));
 };

@@ -24,7 +24,7 @@ app.get('/api/schools', async ( req, res, next ) => {
 });
 
 app.get('/api/schools/:id', async ( req, res, next ) => {
-  console.log(req.body)
+  console.log('hi', req.body)
   try {
     res.send(await Schools.findOne({ where: { id: req.body.schoolId }}));
   }

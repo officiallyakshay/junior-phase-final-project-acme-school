@@ -12,20 +12,6 @@ class Schools extends React.Component {
         await this.props.setSchools();
         // await this.props.setStudents();
     }
-    // onChange(ev) {
-    //     console.log('hi')
-    //       this.setState({[ev.target.name]: ev.target.value});        
-    //   }
-    //   async create(ev) {
-    //     console.log('hey')
-    //       ev.preventDefault();
-    //       const payload = {firstName: this.state.firstName, lastName: this.state.lastName, gpa: this.state.gpa, email: this.state.email, schoolId: this.state.schoolId}
-    //       await this.props.createStudent(payload);
-    //   }
-    //   async destroy(id) {
-    //       await this.props.destroy(id);
-    //       // this.setState({ students : this.state.students.filter( student => student.id !== id ) })
-    //   }
     render() {
         return (
             <div>

@@ -28,12 +28,12 @@ const Schools = ({ schools, students, create, onChange }) => {
             schools.map(school => <li key={school.id} style={{padding: '2rem', display: 'flex', flexWrap: 'wrap', textAlign: 'center', backgroundColor: 'lightBlue'}}>
               <a href={`#/schools/${school.id}`}>{school.name}</a>
               {/* {`Student Count ${students.length} `} */}
-              {/* <select>
+              <select>
                 <option value="--Add Student--">--Add Student--</option>
                   {
                     students.map(student => <option key={student.id}>{student.firstName} {student.lastName}</option>)
                   }
-              </select> */}
+              </select>
             </li>)
           }
         </ul>
@@ -43,15 +43,15 @@ const Schools = ({ schools, students, create, onChange }) => {
 
   const mapStateToStudentsProps = state => {
     return {
-        // students: state.students,
+        students: state.students,
         schools: state.schools
     }
 }
 
 const mapDispatchToStudentsProps = {
-    // setStudents: setStudentsThunks,
-    // createStudent: createStudentThunks,
-    // destroy: destroyThunks,
+    setStudents: setStudentsThunks,
+    createStudent: createStudentThunks,
+    destroy: destroyThunks,
     setSchools: setSchoolsThunks
 }
 

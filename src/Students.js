@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import StudentForm from './StudentForm';
 import { setStudentsThunks, createStudentThunks, destroyThunks } from '../reducers/students';
-// import { setSchoolsThunks } from '../reducers/schools';
 
 class Students extends React.Component {
     constructor() {
@@ -27,7 +26,6 @@ class Students extends React.Component {
     }
     async destroy(id) {
         await this.props.destroy(id);
-        // this.setState({ students : this.state.students.filter( student => student.id !== id ) })
     }
     render() {
         return (
@@ -43,7 +41,6 @@ class Students extends React.Component {
 const mapStateToStudentsProps = state => {
     return {
         students: state.students,
-        // schools: state.schools
     }
 }
 
@@ -51,7 +48,6 @@ const mapDispatchToStudentsProps = {
     setStudents: setStudentsThunks,
     createStudent: createStudentThunks,
     destroy: destroyThunks,
-    // setSchools: setSchoolsThunks
 }
 
 export default connect(mapStateToStudentsProps, mapDispatchToStudentsProps)(Students);

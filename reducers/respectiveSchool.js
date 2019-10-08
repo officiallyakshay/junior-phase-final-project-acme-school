@@ -10,7 +10,7 @@
 // })
 
 // //if i pass an argument in from the front end pass it in the () on line 16
-// const respectiveSchoolThunk = (id) => async dispatch => {
+// export const respectiveSchoolThunk = (id) => async dispatch => {
 //     return async dispatch => {
 //         const school = (await axios.get(`/api/schools/${id}`)).data;
 //         dispatch(respectiveSchool(school));
@@ -27,5 +27,3 @@
 // };
 
 // export default respectiveSchoolReducer
-// export {respectiveSchoolThunk};
-

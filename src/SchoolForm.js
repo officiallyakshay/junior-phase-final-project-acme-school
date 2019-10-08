@@ -1,7 +1,4 @@
 import React from 'react';
-// import Students from './Students';
-import students from '../reducers/students';
-import schools from '../reducers/schools';
 import {connect} from 'react-redux';
 import { setStudentsThunks, createStudentThunks, destroyThunks } from '../reducers/students';
 import { setSchoolsThunks } from '../reducers/schools';

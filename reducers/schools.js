@@ -16,6 +16,7 @@ export const setSchoolsThunks = () => async dispatch => {
     dispatch(setSchools(schools));
 };
 
+//reducer
 const schools = (state = [], action) => {
     switch (action.type) {
         case SET_SCHOOLS:

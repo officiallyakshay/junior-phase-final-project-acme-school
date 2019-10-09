@@ -7,10 +7,6 @@ class RespectiveSchool extends React.Component {
     constructor(props) {
         super(props);
     }
-    async componentDidMount() {
-        console.log(this.props)
-        await this.props.respectiveSchool(this.props.schoolId);
-    }
     render() {
         return (
             <div>

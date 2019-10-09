@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import StudentForm from './StudentForm';
-import { setStudentsThunks, createStudentThunks, destroyThunks } from '../reducers/students';
+import { setStudentsThunks, createStudentThunks, destroyThunks, updateStudentThunks } from '../reducers/students';
 // import { setSchoolsThunks } from '../reducers/schools';
 
 class Students extends React.Component {
@@ -11,16 +11,10 @@ class Students extends React.Component {
       this.create = this.create.bind(this);
       this.destroy = this.destroy.bind(this);
     }
-    async componentDidMount() {
-        await this.props.setStudents();
-        // await this.props.setSchools();
-    }
     onChange(ev) {
-      console.log('hi', ev.target.name, 'hey', ev.target.value)
         this.setState({[ev.target.name]: ev.target.value});        
     }
     async create(ev) {
-      console.log('hey')
         ev.preventDefault();
         const payload = {firstName: this.state.firstName, lastName: this.state.lastName, gpa: this.state.gpa, email: this.state.email, schoolId: this.state.schoolId}
         await this.props.createStudent(payload);
@@ -42,7 +36,6 @@ class Students extends React.Component {
 const mapStateToStudentsProps = state => {
     return {
         students: state.students,
-        // schools: state.schools
     }
 }
 
@@ -50,7 +43,7 @@ const mapDispatchToStudentsProps = {
     setStudents: setStudentsThunks,
     createStudent: createStudentThunks,
     destroy: destroyThunks,
-    // setSchools: setSchoolsThunks
+    updateStudent: updateStudentThunks
 }
 
 export default connect(mapStateToStudentsProps, mapDispatchToStudentsProps)(Students);

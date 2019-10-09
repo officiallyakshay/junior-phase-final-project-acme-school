@@ -4,7 +4,7 @@ import axios from 'axios';
 const SET_STUDENTS = 'SET_STUDENTS'; //action type
 const CREATE_STUDENT =  'CREATE_STUDENT';
 const DESTROY = 'DESTROY';
-// const UPDATE_STUDENT = 'UPDATE_STUDENT';
+const UPDATE_STUDENT = 'UPDATE_STUDENT';
 
 //action creator
 const setStudents = students => ({
@@ -22,10 +22,10 @@ const destroy = student => ({
     student //an id in this 
 });
 
-// const updateStudent = student => ({
-//     type: UPDATE_STUDENT,
-//     student //an id in this 
-// });
+const updateStudent = student => ({
+    type: UPDATE_STUDENT,
+    student //an id in this 
+});
 
 //if i pass an argument in from the front end pass it in the () on line 16
 export const setStudentsThunks = () => async dispatch => {
@@ -44,10 +44,10 @@ export const destroyThunks = (id) => async dispatch => {
     dispatch(destroy(id));
 };
 
-// export const updateStudentThunks = (id) => async dispatch => {
-//     await axios.put(`/api/students/${id}`);
-//     dispatch(updateStudent(id));
-// };
+export const updateStudentThunks = (id, schoolId) => async dispatch => {
+    await axios.put(`/api/students/${id}`, {schoolId});
+    dispatch(updateStudent(id));
+};
 
 const students = (state = [], action) => {
     switch (action.type) {
@@ -57,8 +57,8 @@ const students = (state = [], action) => {
             return [...state, action.student];
         case DESTROY:
             return state.filter(student => student.id !== action.student);
-        // case UPDATE_STUDENT:
-        //     return 
+        case UPDATE_STUDENT:
+            return [...state].map(student => student.id === action.student.id ? action.student : student)
         default:
             return state
     }

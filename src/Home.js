@@ -1,4 +1,7 @@
 import React from 'react';
+import {connect} from 'react-redux';
+// import schools from '../reducers/schools';
+// import { setSchoolsThunks } from '../reducers/schools';
 
 class Home extends React.Component {
     constructor() {
@@ -28,5 +31,17 @@ class Home extends React.Component {
         );
     }
 }
+
+// const mapStateToHomeProps = state => {
+//     return {
+//         schools: state.schools
+//     }
+// }
+
+// const mapDispatchToHomeProps = {
+//     setSchools: setSchoolsThunks
+// }
+
+// export default connect(mapStateToHomeProps, mapDispatchToHomeProps)(Home);
 
 export default Home;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { setStudentsThunks, createStudentThunks, destroyThunks } from '../reducers/students';
+import { setStudentsThunks, createStudentThunks, destroyThunks, updateStudentThunks } from '../reducers/students';
 
 const Students = ({ students, schools, onChange, create, destroy }) => {
     console.log('hi', students)
@@ -50,6 +50,7 @@ const mapDispatchToStudentsProps = {
     setStudents: setStudentsThunks,
     createStudent: createStudentThunks,
     destroy: destroyThunks,
+    updateStudents: updateStudentThunks
 }
 
 export default connect(mapStateToStudentsProps, mapDispatchToStudentsProps)(Students);

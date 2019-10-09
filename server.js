@@ -56,6 +56,7 @@ app.post('/api/students', async ( req, res, next ) => {
 });
 
 app.put('/api/students/:id', async ( req, res, next ) => {
+  console.log(req.body)
   try {
     const student = await Students.update(req.body, { where: {id: req.params.id}, returning: true });
     res.send(student[1]);

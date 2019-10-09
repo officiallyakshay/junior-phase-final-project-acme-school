@@ -3,7 +3,7 @@ import Nav from './Nav';
 import Routes from './Routes';
 import {connect} from 'react-redux';
 import { setSchoolsThunks } from '../reducers/schools';
-import { setStudentsThunks, createStudentThunks, destroyThunks } from '../reducers/students';
+import { setStudentsThunks, createStudentThunks, destroyThunks, updateStudentThunks } from '../reducers/students';
 import { respectiveSchoolThunk } from '../reducers/respectiveSchool';
 import store from '../store';
 
@@ -27,6 +27,7 @@ const mapDispatchToAppProps = {
     setStudents: setStudentsThunks,
     createStudent: createStudentThunks,
     destroy: destroyThunks,
+    updateStudent: updateStudentThunks,
     setSchools: setSchoolsThunks,
     respectiveSchool: respectiveSchoolThunk
 }

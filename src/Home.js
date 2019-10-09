@@ -25,8 +25,8 @@ class Home extends React.Component {
             <button onClick = { create } >Save</button>
             </form>
             <h1>Home</h1>
-            <p>Our most popular school is <a></a> with students.</p>
-            <p>Our top performing school is <a></a> with an average GPA of</p>
+            <p>Our most popular school is <a>Harvard</a> with 4 students.</p>
+            <p>Our top performing school is <a>Stanford</a> with an average GPA of 4.3</p>
         </div>
         );
     }

@@ -1,11 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import students from '../reducers/students';
 import schools from '../reducers/schools';
-import { setStudentsThunks, createStudentThunks, destroyThunks } from '../reducers/students';
+import { setStudentsThunks, createStudentThunks, destroyThunks, updateStudentThunks } from '../reducers/students';
 import { setSchoolsThunks } from '../reducers/schools';
 
-const Schools = ({ schools, students, create, onChange }) => {
+const Schools = ({ schools, students, create, onChange, update }) => {
     console.log('hey', schools)
     return (
       <div>
@@ -26,8 +25,10 @@ const Schools = ({ schools, students, create, onChange }) => {
           {
             schools.map(school => <li key={school.id} style={{padding: '2rem', display: 'flex', flexWrap: 'wrap', textAlign: 'center', backgroundColor: 'lightBlue'}}>
               <a href={`#/schools/${school.id}`}>{school.name}</a>
-              {/* {`Student Count ${students.length} `} */}
-              <select>
+              {/* <img src = {school.imageURL} /> */}
+                Student count: { students.filter(student => student.schoolId === school.id).length}
+                {/* <select name = 'student' onChange = { (ev) => update({id: student.id, schoolId: ev.target.value}) }> */}
+                <select>
                 <option value="--Add Student--">--Add Student--</option>
                   {
                     students.map(student => <option key={student.id}>{student.firstName} {student.lastName}</option>)
@@ -51,6 +52,7 @@ const mapDispatchToStudentsProps = {
     setStudents: setStudentsThunks,
     createStudent: createStudentThunks,
     destroy: destroyThunks,
+    updateStudent: updateStudentThunks,
     setSchools: setSchoolsThunks
 }
 

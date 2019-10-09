@@ -10,6 +10,7 @@ class Students extends React.Component {
       this.onChange = this.onChange.bind(this);
       this.create = this.create.bind(this);
       this.destroy = this.destroy.bind(this);
+    //   this.update = this.update.bind(this);
     }
     onChange(ev) {
         this.setState({[ev.target.name]: ev.target.value});        
@@ -22,6 +23,9 @@ class Students extends React.Component {
     async destroy(id) {
         await this.props.destroy(id);
     }
+    // async update(id, ev) {
+    //     await this.setState({id: student.id, schoolId: ev.target.value})
+    // }
     render() {
         return (
             <div>

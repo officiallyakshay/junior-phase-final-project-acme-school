@@ -45,8 +45,8 @@ export const destroyThunks = (id) => async dispatch => {
 };
 
 export const updateStudentThunks = (id, schoolId) => async dispatch => {
-    await axios.put(`/api/students/${id}`, {schoolId});
-    dispatch(updateStudent(id));
+    const student = await axios.put(`/api/students/${id}`, {schoolId});
+    dispatch(updateStudent(student));
 };
 
 const students = (state = [], action) => {
@@ -56,9 +56,9 @@ const students = (state = [], action) => {
         case CREATE_STUDENT:
             return [...state, action.student];
         case DESTROY:
-            return state.filter(student => student.id !== action.student);
+            return state.filter(student => student.id !== action.student.id);
         case UPDATE_STUDENT:
-            return [...state].map(student => student.id === action.student.id ? action.student : student)
+            return state.map(student => student.id === action.student.id ? action.student : student)
         default:
             return state
     }

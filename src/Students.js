@@ -15,7 +15,7 @@ class Students extends React.Component {
         // await this.props.setSchools();
     }
     onChange(ev) {
-      console.log('hi')
+      console.log('hi', ev.target.name, 'hey', ev.target.value)
         this.setState({[ev.target.name]: ev.target.value});        
     }
     async create(ev) {

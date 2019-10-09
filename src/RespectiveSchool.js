@@ -4,18 +4,18 @@ import RespectiveSchoolForm from './RespectiveSchoolForm';
 import { respectiveSchoolThunk } from '../reducers/respectiveSchool';
 
 class RespectiveSchool extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
     }
     async componentDidMount() {
         console.log(this.props)
-        await this.props.respectiveSchool()
+        await this.props.respectiveSchool(this.props.schoolId);
     }
     render() {
         return (
             <div>
                 {
-                    <RespectiveSchoolForm />
+                    <RespectiveSchoolForm schoolId = { this.props.schoolId } />
                 }
             </div>
         )

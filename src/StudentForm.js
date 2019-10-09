@@ -15,7 +15,7 @@ const Students = ({ students, schools, onChange, create, destroy }) => {
           Enroll At <select name='schoolId' onChange = { onChange } >
             <option value="--Not Enrolled--">--Not Enrolled--</option>
               {
-                schools.map(school => <option key={school.id}>{school.name}</option>)
+                schools.map(school => <option value = {school.id} key={school.id}>{school.name}</option>)
               }
           </select>
           <button onClick = { create } >Save</button>
@@ -29,7 +29,7 @@ const Students = ({ students, schools, onChange, create, destroy }) => {
               <select>
                 <option value="--Not Enrolled--">--Not Enrolled--</option>
                   {
-                    schools.map(school => <option selected={school.id === student.schoolId} key={school.id}>{school.name}</option>)
+                    schools.map(school => <option value = {school.id} selected={school.id === student.schoolId} key={school.id}>{school.name}</option>)
                   }
               </select>
             <button onClick = { () => destroy(student.id) } >Destroy</button></li>)

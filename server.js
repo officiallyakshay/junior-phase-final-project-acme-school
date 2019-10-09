@@ -43,6 +43,7 @@ app.get('/api/students', async ( req, res, next ) => {
 });
 
 app.post('/api/students', async ( req, res, next ) => {
+  console.log(req.body)
   try {
     // const school = await Schools.findAll({ where: { name: req.body.schoolId }});
     // req.body.schoolId = school[0].id;

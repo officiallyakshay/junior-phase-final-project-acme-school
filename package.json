@@ -25,7 +25,7 @@
     "webpack-cli": "^3.3.9"
   },
   "devDependencies": {},
-  "postinstall" :"webpack", 
+  "postinstall" :"npm run webpack", 
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js & npm run webpack",
